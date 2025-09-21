@@ -3,10 +3,12 @@
 
 sensor:
  - platform: empty_compound_sensor
-    sensor1:
-      name: Sensor 1
-    sensor2:
-      name: Sensor 2
-    sensor3:
-      name: Sensor 3
+    plant1:
+      name: Plant 1
+    plant2:
+      name: Plant 2
+    plant3:
+      name: Plant 3
+    plant4:
+      name: Plant 4
 ```

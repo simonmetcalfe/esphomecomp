@@ -8,9 +8,10 @@ EmptyCompoundSensor = empty_compound_sensor_ns.class_(
     "EmptyCompoundSensor", cg.PollingComponent
 )
 
-CONF_SENSOR1 = "sensor1"
-CONF_SENSOR2 = "sensor2"
-CONF_SENSOR3 = "sensor3"
+CONF_SENSOR1 = "plant1"
+CONF_SENSOR2 = "plant2"
+CONF_SENSOR3 = "plant3"
+CONF_SENSOR4 = "plant4"
 
 CONFIG_SCHEMA = cv.Schema(
     {
@@ -28,6 +29,12 @@ CONFIG_SCHEMA = cv.Schema(
             accuracy_decimals=1,
         ).extend(),
         cv.Optional(CONF_SENSOR3): sensor.sensor_schema(
+            EmptyCompoundSensor,
+            unit_of_measurement=UNIT_EMPTY,
+            icon=ICON_EMPTY,
+            accuracy_decimals=1,
+        ).extend(),
+        cv.Optional(CONF_SENSOR4): sensor.sensor_schema(
             EmptyCompoundSensor,
             unit_of_measurement=UNIT_EMPTY,
             icon=ICON_EMPTY,
@@ -52,3 +59,7 @@ async def to_code(config):
     if CONF_SENSOR3 in config:
         sens = await sensor.new_sensor(config[CONF_SENSOR3])
         cg.add(var.set_sensor3(sens))
+
+    if CONF_SENSOR4 in config:
+        sens = await sensor.new_sensor(config[CONF_SENSOR4])
+        cg.add(var.set_sensor4(sens))

@@ -8,9 +8,10 @@ namespace empty_compound_sensor {
 
 class EmptyCompoundSensor : public sensor::Sensor, public PollingComponent {
   public:  
-    void set_sensor1(sensor::Sensor *sensor1) { sensor1_ = sensor1; }
-    void set_sensor2(sensor::Sensor *sensor2) { sensor2_ = sensor2; }
-    void set_sensor3(sensor::Sensor *sensor3) { sensor3_ = sensor3; }
+    void set_plant1(sensor::Sensor *plant1) { cplant1_ = cplant1; }
+    void set_plant2(sensor::Sensor *plant2) { cplant2_ = cplant2; }
+    void set_plant3(sensor::Sensor *plant3) { cplant3_ = cplant3; }
+    void set_plant4(sensor::Sensor *plant4) { cplant4_ = cplant4; }
 
     void setup() override;
     void loop() override;
@@ -18,9 +19,10 @@ class EmptyCompoundSensor : public sensor::Sensor, public PollingComponent {
     void dump_config() override;
 
   protected:
-    sensor::Sensor *sensor1_;
-    sensor::Sensor *sensor2_;
-    sensor::Sensor *sensor3_;
+    sensor::Sensor *cplant1_;
+    sensor::Sensor *cplant2_;
+    sensor::Sensor *cplant3_;
+    sensor::Sensor *cplant4_;
 };
 
 } //namespace empty_compound_sensor
