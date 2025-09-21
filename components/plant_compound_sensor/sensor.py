@@ -50,16 +50,16 @@ async def to_code(config):
 
     if CONF_SENSOR1 in config:
         sens = await sensor.new_sensor(config[CONF_SENSOR1])
-        cg.add(var.set_sensor1(sens))
+        cg.add(var.set_plant1(sens))
 
     if CONF_SENSOR2 in config:
         sens = await sensor.new_sensor(config[CONF_SENSOR2])
-        cg.add(var.set_sensor2(sens))
+        cg.add(var.set_plant2(sens))
 
     if CONF_SENSOR3 in config:
         sens = await sensor.new_sensor(config[CONF_SENSOR3])
-        cg.add(var.set_sensor3(sens))
+        cg.add(var.set_plant3(sens))
 
     if CONF_SENSOR4 in config:
         sens = await sensor.new_sensor(config[CONF_SENSOR4])
-        cg.add(var.set_sensor4(sens))
+        cg.add(var.set_plant4(sens))
