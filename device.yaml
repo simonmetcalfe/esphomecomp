@@ -19,7 +19,7 @@ external_components:
       - empty_binary_output
       - empty_binary_sensor
       - empty_component
-      - empty_compound_sensor
+      - plant_compound_sensor
       - empty_cover
       - empty_fan
       - empty_float_output

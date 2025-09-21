@@ -1,22 +1,22 @@
 #include "esphome/core/log.h"
-#include "empty_compound_sensor.h"
+#include "plant_compound_sensor.h"
 
 namespace esphome
 {
-  namespace empty_compound_sensor
+  namespace plant_compound_sensor
   {
 
-    static const char *TAG = "empty_compound_sensor.sensor";
+    static const char *TAG = "plant_compound_sensor.sensor";
 
-    void EmptyCompoundSensor::setup()
+    void PlantCompoundSensor::setup()
     {
     }
 
-    void EmptyCompoundSensor::loop()
+    void PlantCompoundSensor::loop()
     {
     }
 
-    void EmptyCompoundSensor::update()
+    void PlantCompoundSensor::update()
     {
       if (this->plant1_ != nullptr)
         this->plant1_->publish_state(1.0f);
@@ -28,10 +28,10 @@ namespace esphome
         this->plant4_->publish_state(4.0f);
     }
 
-    void EmptyCompoundSensor::dump_config()
+    void PlantCompoundSensor::dump_config()
     {
-      ESP_LOGCONFIG(TAG, "Empty compound sensor");
+      ESP_LOGCONFIG(TAG, "Plant compound sensor");
     }
 
-  } // namespace empty_compound_sensor
+  } // namespace plant_compound_sensor
 } // namespace esphome

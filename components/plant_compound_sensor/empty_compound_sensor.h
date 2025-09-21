@@ -4,9 +4,9 @@
 #include "esphome/components/sensor/sensor.h"
 
 namespace esphome {
-namespace empty_compound_sensor {
+namespace plant_compound_sensor {
 
-class EmptyCompoundSensor : public sensor::Sensor, public PollingComponent {
+class PlantCompoundSensor : public sensor::Sensor, public PollingComponent {
   public:  
     void set_plant1(sensor::Sensor *plant1) { cplant1_ = cplant1; }
     void set_plant2(sensor::Sensor *plant2) { cplant2_ = cplant2; }
@@ -25,5 +25,5 @@ class EmptyCompoundSensor : public sensor::Sensor, public PollingComponent {
     sensor::Sensor *cplant4_;
 };
 
-} //namespace empty_compound_sensor
+} //namespace plant_compound_sensor
 } //namespace esphome

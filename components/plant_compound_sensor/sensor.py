@@ -3,9 +3,9 @@ import esphome.config_validation as cv
 from esphome.components import sensor
 from esphome.const import CONF_ID, UNIT_EMPTY, ICON_EMPTY
 
-empty_compound_sensor_ns = cg.esphome_ns.namespace("empty_compound_sensor")
-EmptyCompoundSensor = empty_compound_sensor_ns.class_(
-    "EmptyCompoundSensor", cg.PollingComponent
+plant_compound_sensor_ns = cg.esphome_ns.namespace("plant_compound_sensor")
+PlantCompoundSensor = plant_compound_sensor_ns.class_(
+    "PlantCompoundSensor", cg.PollingComponent
 )
 
 CONF_SENSOR1 = "plant1"
@@ -15,27 +15,27 @@ CONF_SENSOR4 = "plant4"
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(): cv.declare_id(EmptyCompoundSensor),
+        cv.GenerateID(): cv.declare_id(PlantCompoundSensor),
         cv.Optional(CONF_SENSOR1): sensor.sensor_schema(
-            EmptyCompoundSensor,
+            PlantCompoundSensor,
             unit_of_measurement=UNIT_EMPTY,
             icon=ICON_EMPTY,
             accuracy_decimals=1,
         ).extend(),
         cv.Optional(CONF_SENSOR2): sensor.sensor_schema(
-            EmptyCompoundSensor,
+            PlantCompoundSensor,
             unit_of_measurement=UNIT_EMPTY,
             icon=ICON_EMPTY,
             accuracy_decimals=1,
         ).extend(),
         cv.Optional(CONF_SENSOR3): sensor.sensor_schema(
-            EmptyCompoundSensor,
+            PlantCompoundSensor,
             unit_of_measurement=UNIT_EMPTY,
             icon=ICON_EMPTY,
             accuracy_decimals=1,
         ).extend(),
         cv.Optional(CONF_SENSOR4): sensor.sensor_schema(
-            EmptyCompoundSensor,
+            PlantCompoundSensor,
             unit_of_measurement=UNIT_EMPTY,
             icon=ICON_EMPTY,
             accuracy_decimals=1,

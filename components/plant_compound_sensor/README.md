@@ -2,7 +2,7 @@
 # example configuration:
 
 sensor:
- - platform: empty_compound_sensor
+ - platform: plant_compound_sensor
     plant1:
       name: Plant 1
     plant2:
