@@ -5,8 +5,23 @@
  * Shared between ESPHome component and standalone Arduino projects.
  */
 
-#include <Arduino.h>
-#include <string.h>
+#include <cstring>
+#include <cstdlib>
+
+#ifdef ARDUINO
+  #include <Arduino.h>
+  #define PLANT_MILLIS() millis()
+  #define PLANT_RANDOM(max) random(max)
+  #define PLANT_RANDOM_SEED() randomSeed(analogRead(0))
+#else
+  // ESP-IDF / FreeRTOS
+  #include "freertos/FreeRTOS.h"
+  #include "freertos/task.h"
+  #include "esp_random.h"
+  #define PLANT_MILLIS() (xTaskGetTickCount() * portTICK_PERIOD_MS)
+  #define PLANT_RANDOM(max) (esp_random() % (max))
+  #define PLANT_RANDOM_SEED() // Not needed for esp_random
+#endif
 
 namespace plant_data {
 
@@ -27,29 +42,29 @@ inline void init()
 {
   if (initialized) return;
   initialized = true;
-  randomSeed(analogRead(0));
-  temperature = 20 + random(15);
-  humidity = 40 + random(40);
-  soil_moisture = 30 + random(50);
-  strcpy(status_str, status_states[0]);
+  PLANT_RANDOM_SEED();
+  temperature = 20 + PLANT_RANDOM(15);
+  humidity = 40 + PLANT_RANDOM(40);
+  soil_moisture = 30 + PLANT_RANDOM(50);
+  std::strcpy(status_str, status_states[0]);
 }
 
 inline void update()
 {
   init();
   
-  unsigned long current_ms = millis();
+  unsigned long current_ms = PLANT_MILLIS();
 
   if (current_ms - last_update_ms >= UPDATE_INTERVAL_MS)
   {
     last_update_ms = current_ms;
 
-    temperature = 20 + random(15);
-    humidity = 40 + random(40);
-    soil_moisture = 30 + random(50);
+    temperature = 20 + PLANT_RANDOM(15);
+    humidity = 40 + PLANT_RANDOM(40);
+    soil_moisture = 30 + PLANT_RANDOM(50);
 
     current_status_index = (current_status_index + 1) % 3;
-    strcpy(status_str, status_states[current_status_index]);
+    std::strcpy(status_str, status_states[current_status_index]);
   }
 }
 
