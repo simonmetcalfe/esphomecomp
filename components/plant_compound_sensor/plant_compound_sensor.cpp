@@ -2,6 +2,9 @@
 #include "plant_compound_sensor.h"
 #include "plant_data.h"
 
+// Include implementation directly (ESPHome only compiles component-named .cpp files)
+#include "plant_data.inc"
+
 namespace esphome
 {
   namespace plant_compound_sensor

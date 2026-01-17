@@ -1,12 +1,13 @@
+// plant_data.inc - Implementation file included directly into plant_compound_sensor.cpp
+// This allows sharing code with standalone Arduino projects (see src/plant_data.cpp)
+
 #include <Arduino.h>
 #include <string.h>
-#include "plant_data.h"
 
-// Simulated sensor values
 static int temperature = 0;
 static int humidity = 0;
 static int soil_moisture = 0;
-static char status[8] = "good";
+static char status_str[8] = "good";
 
 static const char *status_states[] = {"good", "bad", "ugly"};
 static int current_status_index = 0;
@@ -24,7 +25,7 @@ void plant_data_init()
   temperature = 20 + random(15);
   humidity = 40 + random(40);
   soil_moisture = 30 + random(50);
-  strcpy(status, status_states[0]);
+  strcpy(status_str, status_states[0]);
 }
 
 void plant_data_update()
@@ -37,12 +38,12 @@ void plant_data_update()
   {
     last_update_ms = current_ms;
 
-    temperature = 20 + random(15);   // 20-34
-    humidity = 40 + random(40);      // 40-79
-    soil_moisture = 30 + random(50); // 30-79
+    temperature = 20 + random(15);
+    humidity = 40 + random(40);
+    soil_moisture = 30 + random(50);
 
     current_status_index = (current_status_index + 1) % 3;
-    strcpy(status, status_states[current_status_index]);
+    strcpy(status_str, status_states[current_status_index]);
   }
 }
 
@@ -63,6 +64,6 @@ int plant_get_soil_moisture() {
 
 const char* plant_get_status() { 
   plant_data_init();
-  return status; 
+  return status_str; 
 }
 
