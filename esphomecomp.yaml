@@ -87,3 +87,4 @@ external_components:
       type: git
       url: https://github.com/simonmetcalfe/esphomecomp.git
     components: [ empty_sensor, plant_compound_sensor, empty_binary_sensor, empty_component, empty_text_sensor ]
+    refresh: always
