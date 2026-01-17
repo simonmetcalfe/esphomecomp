@@ -1,0 +1,89 @@
+esphome:
+  name: tester-esphomecomp
+  friendly_name: tester_esphomecomp
+
+  # Set sensor default values
+  on_boot:
+    priority: 600 
+    then:
+
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+  level: INFO
+
+# script:
+
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "yQjSaKxKmWQ+aOYtsqOzD4+YSjqYanUY7ChoLtXkjWU="
+
+ota:
+  - platform: esphome
+    password: "df55eefb7b010b19fbc2842c827eab72"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Tester-Esphomecomp"
+    password: "y37vCI6RwXNV"
+
+captive_portal:
+
+#  globals:
+
+    
+output:
+
+
+light:
+
+sensor:
+  - platform: wifi_signal
+    name: "WiFi Signal Strength"
+    id: wifi_signal_strength
+    update_interval: 2000ms
+    entity_category: "diagnostic"
+
+
+  - platform: empty_sensor
+    name: Empty sensor
+
+  - platform: plant_compound_sensor
+    plant1:
+      name: Plant 1
+    plant2:
+      name: Plant 2
+    plant3:
+      name: Plant 3
+    plant4:
+      name: Plant 4
+
+
+binary_sensor:
+  - platform: empty_binary_sensor
+    name: Empty binary sensor
+
+
+text_sensor:
+  - platform: empty_text_sensor
+    name: Empty text sensor
+
+empty_component:
+  id: empty_component_1
+    
+external_components:
+  - source: 
+      type: git
+      url: https://github.com/simonmetcalfe/esphomecomp.git
+    components: [ empty_sensor, plant_compound_sensor, empty_binary_sensor, empty_component, empty_text_sensor ]
