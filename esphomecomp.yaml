@@ -3,6 +3,7 @@ esphome:
   friendly_name: tester_esphomecomp
   platformio_options:
     build_src_filter: +<../src/>
+    build_flags: -I../../src
 
   # Set sensor default values
   on_boot:
