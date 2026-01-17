@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <string.h>
+#include "esphome_connector.h"
 
 // Simulated sensor values
 int temperature = 0;
@@ -42,3 +43,9 @@ void loop()
     strcpy(status, status_states[current_status_index]);
   }
 }
+
+// ESPHome connector functions
+int get_temperature() { return temperature; }
+int get_humidity() { return humidity; }
+int get_soil_moisture() { return soil_moisture; }
+const char *get_status() { return status; }
