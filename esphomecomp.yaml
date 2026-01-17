@@ -1,6 +1,8 @@
 esphome:
   name: tester-esphomecomp
   friendly_name: tester_esphomecomp
+  platformio_options:
+    build_src_filter: +<../src/>
 
   # Set sensor default values
   on_boot:
