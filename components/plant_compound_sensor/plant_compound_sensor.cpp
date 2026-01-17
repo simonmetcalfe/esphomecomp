@@ -2,9 +2,6 @@
 #include "plant_compound_sensor.h"
 #include "plant_data.h"
 
-// Include implementation directly (ESPHome only compiles component-named .cpp files)
-#include "plant_data.inc"
-
 namespace esphome
 {
   namespace plant_compound_sensor
@@ -14,22 +11,22 @@ namespace esphome
 
     void PlantCompoundSensor::setup()
     {
-      plant_data_init();
+      plant_data::init();
     }
 
     void PlantCompoundSensor::loop()
     {
-      plant_data_update();
+      plant_data::update();
     }
 
     void PlantCompoundSensor::update()
     {
       if (this->cplant1_ != nullptr)
-        this->cplant1_->publish_state(static_cast<float>(plant_get_temperature()));
+        this->cplant1_->publish_state(static_cast<float>(plant_data::get_temperature()));
       if (this->cplant2_ != nullptr)
-        this->cplant2_->publish_state(static_cast<float>(plant_get_humidity()));
+        this->cplant2_->publish_state(static_cast<float>(plant_data::get_humidity()));
       if (this->cplant3_ != nullptr)
-        this->cplant3_->publish_state(static_cast<float>(plant_get_soil_moisture()));
+        this->cplant3_->publish_state(static_cast<float>(plant_data::get_soil_moisture()));
       if (this->cplant4_ != nullptr)
         this->cplant4_->publish_state(8.0f);
     }
