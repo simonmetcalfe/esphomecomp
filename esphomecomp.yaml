@@ -1,9 +1,10 @@
 esphome:
   name: tester-esphomecomp
   friendly_name: tester_esphomecomp
+  includes:
+    - src/esphome_connector.h
   platformio_options:
     build_src_filter: +<../src/>
-    build_flags: -I../../src
 
   # Set sensor default values
   on_boot:
