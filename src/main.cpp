@@ -1,51 +1,48 @@
+/**
+ * Example Arduino sketch demonstrating plant_data library usage.
+ *
+ * This shows how the same library can be used in:
+ * 1. A standalone Arduino project (this file)
+ * 2. An ESPHome component (components/plant_compound_sensor/)
+ *
+ * To use in a standalone Arduino project, copy plant_data.h and plant_data.cpp
+ * from components/plant_compound_sensor/ into your project.
+ */
+
 #include <Arduino.h>
-#include <string.h>
-#include "esphome_connector.h"
-
-// Simulated sensor values
-int temperature = 0;
-int humidity = 0;
-int soil_moisture = 0;
-
-// Status string - cycles through states
-char status[8] = "good";
-
-static const char *status_states[] = {"good", "bad", "ugly"};
-static int current_status_index = 0;
-
-static unsigned long last_update_ms = 0;
-static const unsigned long UPDATE_INTERVAL_MS = 3000;
+#include "plant_data.h"
 
 void setup()
 {
-  randomSeed(analogRead(0));
-  temperature = 20 + random(15);
-  humidity = 40 + random(40);
-  soil_moisture = 30 + random(50);
-  strcpy(status, status_states[0]);
+  Serial.begin(115200);
+  delay(1000);
+
+  Serial.println("Plant Data Library Example");
+  Serial.println("==========================");
+
+  plant_data_init();
 }
 
 void loop()
 {
-  unsigned long current_ms = millis();
+  plant_data_update();
 
-  if (current_ms - last_update_ms >= UPDATE_INTERVAL_MS)
-  {
-    last_update_ms = current_ms;
+  Serial.print("Temperature: ");
+  Serial.print(plant_get_temperature());
+  Serial.println(" C");
 
-    // Randomize integers within reasonable ranges
-    temperature = 20 + random(15);   // 20-34
-    humidity = 40 + random(40);      // 40-79
-    soil_moisture = 30 + random(50); // 30-79
+  Serial.print("Humidity: ");
+  Serial.print(plant_get_humidity());
+  Serial.println(" %");
 
-    // Cycle status
-    current_status_index = (current_status_index + 1) % 3;
-    strcpy(status, status_states[current_status_index]);
-  }
+  Serial.print("Soil Moisture: ");
+  Serial.print(plant_get_soil_moisture());
+  Serial.println(" %");
+
+  Serial.print("Status: ");
+  Serial.println(plant_get_status());
+
+  Serial.println("---");
+
+  delay(1000);
 }
-
-// ESPHome connector functions
-int get_temperature() { return temperature; }
-int get_humidity() { return humidity; }
-int get_soil_moisture() { return soil_moisture; }
-const char *get_status() { return status; }

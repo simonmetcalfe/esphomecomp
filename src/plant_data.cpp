@@ -1,13 +1,11 @@
 #include <Arduino.h>
 #include <string.h>
-#include "esphome_connector.h"
+#include "plant_data.h"
 
 // Simulated sensor values
 static int temperature = 0;
 static int humidity = 0;
 static int soil_moisture = 0;
-
-// Status string - cycles through states
 static char status[8] = "good";
 
 static const char *status_states[] = {"good", "bad", "ugly"};
@@ -18,7 +16,7 @@ static const unsigned long UPDATE_INTERVAL_MS = 3000;
 
 static bool initialized = false;
 
-static void plant_init()
+void plant_data_init()
 {
   if (initialized) return;
   initialized = true;
@@ -29,46 +27,42 @@ static void plant_init()
   strcpy(status, status_states[0]);
 }
 
-static void plant_update()
+void plant_data_update()
 {
+  plant_data_init();
+  
   unsigned long current_ms = millis();
 
   if (current_ms - last_update_ms >= UPDATE_INTERVAL_MS)
   {
     last_update_ms = current_ms;
 
-    // Randomize integers within reasonable ranges
     temperature = 20 + random(15);   // 20-34
     humidity = 40 + random(40);      // 40-79
     soil_moisture = 30 + random(50); // 30-79
 
-    // Cycle status
     current_status_index = (current_status_index + 1) % 3;
     strcpy(status, status_states[current_status_index]);
   }
 }
 
-// ESPHome connector functions
-int get_temperature() { 
-  plant_init();
-  plant_update();
+int plant_get_temperature() { 
+  plant_data_init();
   return temperature; 
 }
 
-int get_humidity() { 
-  plant_init();
-  plant_update();
+int plant_get_humidity() { 
+  plant_data_init();
   return humidity; 
 }
 
-int get_soil_moisture() { 
-  plant_init();
-  plant_update();
+int plant_get_soil_moisture() { 
+  plant_data_init();
   return soil_moisture; 
 }
 
-const char *get_status() { 
-  plant_init();
-  plant_update();
+const char* plant_get_status() { 
+  plant_data_init();
   return status; 
 }
+

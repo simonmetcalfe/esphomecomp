@@ -1,6 +1,6 @@
 #include "esphome/core/log.h"
 #include "plant_compound_sensor.h"
-#include "esphome_connector.h"
+#include "plant_data.h"
 
 namespace esphome
 {
@@ -11,20 +11,22 @@ namespace esphome
 
     void PlantCompoundSensor::setup()
     {
+      plant_data_init();
     }
 
     void PlantCompoundSensor::loop()
     {
+      plant_data_update();
     }
 
     void PlantCompoundSensor::update()
     {
       if (this->cplant1_ != nullptr)
-        this->cplant1_->publish_state(static_cast<float>(get_temperature()));
+        this->cplant1_->publish_state(static_cast<float>(plant_get_temperature()));
       if (this->cplant2_ != nullptr)
-        this->cplant2_->publish_state(static_cast<float>(get_humidity()));
+        this->cplant2_->publish_state(static_cast<float>(plant_get_humidity()));
       if (this->cplant3_ != nullptr)
-        this->cplant3_->publish_state(static_cast<float>(get_soil_moisture()));
+        this->cplant3_->publish_state(static_cast<float>(plant_get_soil_moisture()));
       if (this->cplant4_ != nullptr)
         this->cplant4_->publish_state(8.0f);
     }
