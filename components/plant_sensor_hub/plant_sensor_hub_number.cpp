@@ -11,7 +11,7 @@ void PlantSensorHubNumber::setup() {
   if (!restore_value_) {
     value = initial_value_;
   } else {
-    pref_ = make_entity_preference<float>();
+    pref_ = this->make_entity_preference<float>();
     if (!pref_.load(&value)) {
       value = initial_value_;
     }
