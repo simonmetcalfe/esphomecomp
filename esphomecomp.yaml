@@ -134,6 +134,39 @@ empty_component:
   id: empty_component_1
   # update_interval not supported
 
+number:
+  # Plant sensor hub - per-plant settings (persistent, BOX mode)
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 0
+    type: pot_size
+    name: Plant 1 Pot Size
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 0
+    type: min_moisture
+    name: Plant 1 Min Moisture
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 0
+    type: max_moisture
+    name: Plant 1 Max Moisture
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 1
+    type: pot_size
+    name: Plant 2 Pot Size
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 1
+    type: min_moisture
+    name: Plant 2 Min Moisture
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 1
+    type: max_moisture
+    name: Plant 2 Max Moisture
+
 # Plant watering system hub - global + per-plant sensors
 plant_sensor_hub:
   id: plant_hub

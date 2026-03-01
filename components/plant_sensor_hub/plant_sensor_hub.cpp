@@ -1,5 +1,6 @@
 #include "plant_sensor_hub.h"
 #include "esphome/core/log.h"
+#include "esphome/components/number/number.h"
 
 namespace esphome {
 namespace plant_sensor_hub {
@@ -34,6 +35,23 @@ void PlantSensorHub::register_binary_sensor(int type, binary_sensor::BinarySenso
       break;
     case 2:
       watering_active_ = s;
+      break;
+  }
+}
+
+void PlantSensorHub::register_number(size_t plant_index, int type,
+                                     number::Number *n) {
+  if (plant_index >= MAX_PLANTS)
+    return;
+  switch (type) {
+    case 0:
+      plants_[plant_index].pot_size = n;
+      break;
+    case 1:
+      plants_[plant_index].min_moisture = n;
+      break;
+    case 2:
+      plants_[plant_index].max_moisture = n;
       break;
   }
 }
@@ -88,6 +106,15 @@ void PlantSensorHub::dump_config() {
     }
     if (plants_[i].state != nullptr) {
       LOG_TEXT_SENSOR("  ", "Plant state", plants_[i].state);
+    }
+    if (plants_[i].pot_size != nullptr) {
+      LOG_NUMBER("  ", "Plant pot size", plants_[i].pot_size);
+    }
+    if (plants_[i].min_moisture != nullptr) {
+      LOG_NUMBER("  ", "Plant min moisture", plants_[i].min_moisture);
+    }
+    if (plants_[i].max_moisture != nullptr) {
+      LOG_NUMBER("  ", "Plant max moisture", plants_[i].max_moisture);
     }
   }
 }

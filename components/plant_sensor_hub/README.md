@@ -36,7 +36,30 @@ text_sensor:
     plant_sensor_hub_id: plant_hub
     plant_index: 0
     name: Plant 1 State
+
+number:
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 0
+    type: pot_size
+    name: Plant 1 Pot Size
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 0
+    type: min_moisture
+    name: Plant 1 Min Moisture
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 0
+    type: max_moisture
+    name: Plant 1 Max Moisture
 ```
+
+## Number types (persistent, BOX mode)
+
+- `pot_size` – 10–80 cm, step 5, default 25
+- `min_moisture` – 10–45 %, step 5, default 30
+- `max_moisture` – 55–90 %, step 5, default 80
 
 ## Binary sensor types
 
@@ -53,5 +76,3 @@ text_sensor:
 ## Note
 
 Currently publishes mock data. Integrate real hardware/driver in `plant_sensor_hub.cpp` `update()`.
-
-Per-plant settings (min/max moisture, pot size) can be added via ESPHome `template` number entities or a future `number.py` platform.
