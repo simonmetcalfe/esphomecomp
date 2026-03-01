@@ -75,13 +75,42 @@ sensor:
       name: Plant 4
       state_class: measurement
     update_interval: 2000ms
-    
+
+  # Plant sensor hub - compound sensors per plant (moisture + water_count)
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 0
+    moisture:
+      name: Plant 1 Moisture
+    water_count:
+      name: Plant 1 Water Count
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 1
+    moisture:
+      name: Plant 2 Moisture
+    water_count:
+      name: Plant 2 Water Count
 
 
 binary_sensor:
   - platform: empty_binary_sensor
     name: Empty binary sensor
     # update_interval not supported
+
+  # Plant sensor hub - global binary sensors
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    type: tank_empty
+    name: Tank Empty
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    type: alarm
+    name: Alarm
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    type: watering_active
+    name: Watering Active
 
 
 
@@ -90,15 +119,31 @@ text_sensor:
     name: Empty text sensor
     # update_interval not supported
 
+  # Plant sensor hub - per-plant state
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 0
+    name: Plant 1 State
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 1
+    name: Plant 2 State
+
 
 empty_component:
   id: empty_component_1
   # update_interval not supported
+
+# Plant watering system hub - global + per-plant sensors
+plant_sensor_hub:
+  id: plant_hub
+  num_plants: 4
+  update_interval: 60s
 
     
 external_components:
   - source: 
       type: git
       url: https://github.com/simonmetcalfe/esphomecomp.git
-    components: [ empty_sensor, plant_compound_sensor, empty_binary_sensor, empty_component, empty_text_sensor ]
+    components: [ empty_sensor, plant_compound_sensor, plant_sensor_hub, empty_binary_sensor, empty_component, empty_text_sensor ]
     refresh: always
