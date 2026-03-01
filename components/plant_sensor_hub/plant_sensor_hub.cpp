@@ -24,15 +24,15 @@ void PlantSensorHub::register_plant_state_sensor(size_t plant_index, text_sensor
   }
 }
 
-void PlantSensorHub::register_binary_sensor(BinarySensorType type, binary_sensor::BinarySensor *s) {
+void PlantSensorHub::register_binary_sensor(int type, binary_sensor::BinarySensor *s) {
   switch (type) {
-    case BinarySensorType::BINARY_SENSOR_TYPE_TANK_EMPTY:
+    case 0:
       tank_empty_ = s;
       break;
-    case BinarySensorType::BINARY_SENSOR_TYPE_ALARM:
+    case 1:
       alarm_ = s;
       break;
-    case BinarySensorType::BINARY_SENSOR_TYPE_WATERING_ACTIVE:
+    case 2:
       watering_active_ = s;
       break;
   }

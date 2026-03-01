@@ -10,12 +10,6 @@ namespace plant_sensor_hub {
 
 static constexpr size_t MAX_PLANTS = 4;
 
-enum class BinarySensorType {
-  BINARY_SENSOR_TYPE_TANK_EMPTY,
-  BINARY_SENSOR_TYPE_ALARM,
-  BINARY_SENSOR_TYPE_WATERING_ACTIVE,
-};
-
 struct PlantSensors {
   sensor::Sensor *moisture{nullptr};
   sensor::Sensor *water_count{nullptr};
@@ -28,7 +22,7 @@ class PlantSensorHub : public PollingComponent {
   void register_moisture_sensor(size_t plant_index, sensor::Sensor *s);
   void register_water_count_sensor(size_t plant_index, sensor::Sensor *s);
   void register_plant_state_sensor(size_t plant_index, text_sensor::TextSensor *s);
-  void register_binary_sensor(BinarySensorType type, binary_sensor::BinarySensor *s);
+  void register_binary_sensor(int type, binary_sensor::BinarySensor *s);
 
   void setup() override;
   void update() override;
