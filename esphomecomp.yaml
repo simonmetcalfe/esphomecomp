@@ -167,6 +167,17 @@ number:
     plant_index: 1
     type: max_moisture
     name: Plant 2 Max Moisture
+  # Volatile (not persisted) - C++ decides whether to save
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 0
+    type: leak_threshold
+    name: Plant 1 Leak Threshold
+  - platform: plant_sensor_hub
+    plant_sensor_hub_id: plant_hub
+    plant_index: 1
+    type: leak_threshold
+    name: Plant 2 Leak Threshold
 
 # Plant watering system hub - global + per-plant sensors
 plant_sensor_hub:

@@ -55,11 +55,15 @@ number:
     name: Plant 1 Max Moisture
 ```
 
-## Number types (persistent, BOX mode)
+## Number types (BOX mode)
 
+**Persistent (restore_value: yes):**
 - `pot_size` – 10–80 cm, step 5, default 25
 - `min_moisture` – 10–45 %, step 5, default 30
 - `max_moisture` – 55–90 %, step 5, default 80
+
+**Volatile (restore_value: no, C++ decides whether to save):**
+- `leak_threshold` – 0–5, step 1, default 0
 
 ## Binary sensor types
 

@@ -53,6 +53,9 @@ void PlantSensorHub::register_number(size_t plant_index, int type,
     case 2:
       plants_[plant_index].max_moisture = n;
       break;
+    case 3:
+      plants_[plant_index].leak_threshold = n;
+      break;
   }
 }
 
@@ -115,6 +118,9 @@ void PlantSensorHub::dump_config() {
     }
     if (plants_[i].max_moisture != nullptr) {
       LOG_NUMBER("  ", "Plant max moisture", plants_[i].max_moisture);
+    }
+    if (plants_[i].leak_threshold != nullptr) {
+      LOG_NUMBER("  ", "Plant leak threshold", plants_[i].leak_threshold);
     }
   }
 }

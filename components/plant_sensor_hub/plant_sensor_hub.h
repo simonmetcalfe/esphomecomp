@@ -11,7 +11,7 @@ namespace plant_sensor_hub {
 
 static constexpr size_t MAX_PLANTS = 4;
 
-// Number type indices: 0=pot_size, 1=min_moisture, 2=max_moisture
+// Number type indices: 0=pot_size, 1=min_moisture, 2=max_moisture, 3=leak_threshold (volatile)
 struct PlantSensors {
   sensor::Sensor *moisture{nullptr};
   sensor::Sensor *water_count{nullptr};
@@ -19,6 +19,7 @@ struct PlantSensors {
   number::Number *pot_size{nullptr};
   number::Number *min_moisture{nullptr};
   number::Number *max_moisture{nullptr};
+  number::Number *leak_threshold{nullptr};
 };
 
 class PlantSensorHub : public PollingComponent {
