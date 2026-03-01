@@ -29,11 +29,38 @@ namespace esphome
         this->cplant3_->publish_state(static_cast<float>(plant_data::get_soil_moisture()));
       if (this->cplant4_ != nullptr)
         this->cplant4_->publish_state(8.0f);
+
+      /*
+        Serial.print("Temperature: ");
+        Serial.print(plant_data::get_temperature());
+        Serial.println(" C");
+
+        Serial.print("Humidity: ");
+        Serial.print(plant_data::get_humidity());
+        Serial.println(" %");
+
+        Serial.print("Soil Moisture: ");
+        Serial.print(plant_data::get_soil_moisture());
+        Serial.println(" %");
+
+        Serial.print("Status: ");
+        Serial.println(plant_data::get_status());
+
+        Serial.println("---");
+
+      */
     }
 
     void PlantCompoundSensor::dump_config()
+    /*
+    ESP_LOGD(TAG, "format", ...)	Debug	Detailed diagnostics
+    ESP_LOGI(TAG, "format", ...)	Info	Normal status messages
+    ESP_LOGW(TAG, "format", ...)	Warning	Warnings
+    ESP_LOGE(TAG, "format", ...)	Error	Errors
+    */
+
     {
-      ESP_LOGCONFIG(TAG, "Plant compound sensor");
+      ESP_LOGI(TAG, "Plant compound sensor");
     }
 
   } // namespace plant_compound_sensor
