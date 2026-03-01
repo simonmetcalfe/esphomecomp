@@ -58,29 +58,43 @@ sensor:
 
   - platform: empty_sensor
     name: Empty sensor
+    update_interval: 2000ms
+
 
   - platform: plant_compound_sensor
     plant1:
       name: Plant 1
+      state_class: measurement
     plant2:
       name: Plant 2
+      state_class: measurement
     plant3:
       name: Plant 3
+      state_class: measurement
     plant4:
       name: Plant 4
+      state_class: measurement
+    update_interval: 2000ms
+    
 
 
 binary_sensor:
   - platform: empty_binary_sensor
     name: Empty binary sensor
+    # update_interval not supported
+
 
 
 text_sensor:
   - platform: empty_text_sensor
     name: Empty text sensor
+    # update_interval not supported
+
 
 empty_component:
   id: empty_component_1
+  # update_interval not supported
+
     
 external_components:
   - source: 
