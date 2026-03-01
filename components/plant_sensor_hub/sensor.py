@@ -31,9 +31,9 @@ CONFIG_SCHEMA = cv.All(
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
         }
-    ),
+    ).extend(cv.COMPONENT_SCHEMA),
     cv.has_at_least_one_key(CONF_MOISTURE, CONF_WATER_COUNT),
-).extend(cv.COMPONENT_SCHEMA)
+)
 
 
 async def to_code(config):

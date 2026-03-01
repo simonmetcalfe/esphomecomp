@@ -145,5 +145,6 @@ external_components:
   - source: 
       type: git
       url: https://github.com/simonmetcalfe/esphomecomp.git
+      ref: plant-sensor-hub # CONFIGURED TO USE BRANCH PLANT-SENSOR-HUB
     components: [ empty_sensor, plant_compound_sensor, plant_sensor_hub, empty_binary_sensor, empty_component, empty_text_sensor ]
     refresh: always
