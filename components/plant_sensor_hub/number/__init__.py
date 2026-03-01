@@ -12,7 +12,7 @@ from esphome.const import (
     UNIT_PERCENT,
 )
 
-from . import CONF_PLANT_SENSOR_HUB_ID, PlantSensorHub, plant_sensor_hub_ns
+from .. import CONF_PLANT_SENSOR_HUB_ID, PlantSensorHub, plant_sensor_hub_ns
 
 DEPENDENCIES = ["plant_sensor_hub"]
 
